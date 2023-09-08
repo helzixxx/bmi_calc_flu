@@ -16,17 +16,18 @@ class ResultsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(left: 15.0),
-              child: Text(
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(15.0),
+              alignment: Alignment.bottomLeft,
+              child: const Text(
                 'Your result',
                 style: kTitleTextStyle,
               ),
             ),
           ),
           Expanded(
-            flex: 8,
+            flex: 5,
             child: ReusableCard(
               color: kActiveCardColor,
               cardChild: const Column(
