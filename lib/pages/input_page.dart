@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
-import 'gender_widget.dart';
-import 'gender_type.dart';
-import 'constants.dart';
-import 'round_icon_button.dart';
+import 'package:bmi_calc_flu/components/reusable_card.dart';
+import '../components/gender_widget.dart';
+import '../components/gender_type.dart';
+import '../constants.dart';
+import '../components/round_icon_button.dart';
+import 'results_page.dart';
+import '../components/bottom_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InputPage extends StatefulWidget {
@@ -185,12 +187,15 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: kBottomContainerColor,
-              margin: kBottomContainerMargin,
-              height: kBottomContainerHeight,
-              width: double.infinity,
-            )
+            BottomButton(
+              onPress: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ResultsPage()),
+                );
+              },
+              buttonTitle: 'CALCULATE YOUR BMI',
+            ),
           ],
         ));
   }
