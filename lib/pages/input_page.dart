@@ -6,6 +6,7 @@ import '../constants.dart';
 import '../components/round_icon_button.dart';
 import 'results_page.dart';
 import '../components/bottom_button.dart';
+import 'package:bmi_calc_flu/calculator_brain.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InputPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('BMI CALCULATOR'),
+          title: const Text('BMI CALCULATOR'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -66,7 +67,7 @@ class _InputPageState extends State<InputPage> {
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'HEIGHT',
                       style: kLabelTextStyle,
                     ),
@@ -79,7 +80,7 @@ class _InputPageState extends State<InputPage> {
                           height.toString(),
                           style: kNumberTextStyle,
                         ),
-                        Text(
+                        const Text(
                           'cm',
                           style: kLabelTextStyle,
                         ),
@@ -118,7 +119,7 @@ class _InputPageState extends State<InputPage> {
                       cardChild: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'WEIGHT',
                             style: kLabelTextStyle,
                           ),
@@ -154,7 +155,7 @@ class _InputPageState extends State<InputPage> {
                       cardChild: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'AGE',
                             style: kLabelTextStyle,
                           ),
@@ -189,9 +190,16 @@ class _InputPageState extends State<InputPage> {
             ),
             BottomButton(
               onPress: () {
+                CalculatorBrain calc = CalculatorBrain(height, weight);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ResultsPage()),
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(
+                      bmiNumber: calc.calculateBMI(),
+                      interpretation: calc.getInterpretation(),
+                      bmiResult: calc.getResult(),
+                    ),
+                  ),
                 );
               },
               buttonTitle: 'CALCULATE YOUR BMI',
